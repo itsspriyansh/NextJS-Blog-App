@@ -1,6 +1,13 @@
 import Head from 'next/head'
+import { PostCard, PostWidget, Categories } from "../components"
 
 export default function Home() {
+
+  const posts = [
+    {title : "nextjs app", excerpt : "learning nextjs is so awesome"},
+    {title : "react framework", excerpt : "nextjs is a fullstack framework"},
+  ]
+
   return (
     <>
       <Head>
@@ -10,7 +17,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        hello world
+        <div className=' grid grid-cols-1 lg:grid-cols-12 gap-12'>
+          <div className=' lg:col-span-8 col-span-1'>
+              {
+                posts.map((post, index) => (
+                  <PostCard post={posts[index]} index={post.title} />
+                ))
+              }
+          </div>
+          <div className=' lg:col-span-4 col-span-1'>
+              <div className=' lg:sticky relative top-8'>
+                <PostWidget />
+                <Categories />
+              </div>
+          </div>
+        </div>
       </div>
     </>
   )
