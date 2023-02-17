@@ -1,12 +1,13 @@
 import Head from 'next/head'
 import { PostCard, PostWidget, Categories } from "../components"
+import { getPosts } from '@/services'
 
-export default function Home() {
+export default function Home({ posts }) {
 
-  const posts = [
-    {title : "nextjs app", excerpt : "learning nextjs is so awesome"},
-    {title : "react framework", excerpt : "nextjs is a fullstack framework"},
-  ]
+  // const posts = [
+  //   {title : "nextjs app", excerpt : "learning nextjs is so awesome"},
+  //   {title : "react framework", excerpt : "nextjs is a fullstack framework"},
+  // ]
 
   return (
     <>
@@ -37,3 +38,10 @@ export default function Home() {
   )
 }
 
+export const getStaticProps = async () => {
+  const posts = (await getPosts()) || []
+  
+  return ({
+    props : { posts }
+  })
+}
