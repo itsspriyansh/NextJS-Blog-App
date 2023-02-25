@@ -21,11 +21,10 @@ export default function Home({ posts }) {
         <div className='container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12'>
           <div className=' lg:col-span-8 col-span-1'>
               {
-                posts.map((post, index) => (
-                  <PostCard post={posts[index]} index={post.title} />
+                posts.map((post) => (
+                  <PostCard post={post.node} index={post.title} />
                 ))
               }
-              <PostCard />
           </div>
           <div className=' lg:col-span-4 col-span-1'>
               <div className=' lg:sticky relative top-8'>
