@@ -42,6 +42,17 @@ export const getSimilarPosts = async () => {
   return response.posts
 }
 
+export const getCategories = async () => {
+  const query = gql `
+    query GetCategories {
+      categories {
+        name
+        slug
+      }
+    }
+  `
+}
+
 export const getPosts = async () => {
     const query = gql `
     query Assets {
