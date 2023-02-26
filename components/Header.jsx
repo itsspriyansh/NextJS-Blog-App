@@ -1,8 +1,15 @@
 import Link from 'next/link'
-
-const categories = [{name : "react", slug : "React"}, {name : "WebDevelopemnt", slug : "web-development"}]
+import { useEffect, useState } from 'react'
+import { getCategories } from '@/services'
 
 const Header = () => {
+
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    getCategories()
+    .then(result => setCategories(prev => result))
+  }, [])
 
   return (
     <div className="container mx-auto px-10mb-8">
@@ -27,4 +34,3 @@ const Header = () => {
 }
 
 export default Header
-
