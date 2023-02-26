@@ -1,5 +1,4 @@
 import {request, gql} from "graphql-request"
-import * as dotenv from "dotenv"
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT
 
@@ -20,7 +19,6 @@ export const getRecentPosts = async () => {
     }
   `
   const response = await request(graphqlAPI, query)
-    
   return response.posts
 }
 
@@ -40,6 +38,8 @@ export const getSimilarPosts = async () => {
       }
     }
   `
+  const response = await request(graphqlAPI, query)
+  return response.posts
 }
 
 export const getPosts = async () => {
@@ -80,6 +80,5 @@ export const getPosts = async () => {
       }
     `
     const response = await request(graphqlAPI, query)
-    
     return response.postsConnection.edges
 }
