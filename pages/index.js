@@ -4,11 +4,6 @@ import { getPosts } from '@/services'
 
 export default function Home({ posts }) {
 
-  // const posts = [
-  //   {title : "nextjs app", excerpt : "learning nextjs is so awesome"},
-  //   {title : "react framework", excerpt : "nextjs is a fullstack framework"},
-  // ]
-
   return (
     <>
       <Head>
