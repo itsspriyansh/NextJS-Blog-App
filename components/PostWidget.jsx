@@ -29,13 +29,13 @@ const PostWidget = ({slug, categories}) => {
         relatedPosts.map(post => (
           <div key={post.title} className="flex items-center w-full mb-4">
             <div className="w-16 flex-none">
+              <div className="w-12 h-12 rounded-full overflow-hidden">
               <img
                 alt={post.title}
-                height="60px"
-                width="60px"
-                className="align-middle rounded-full"
                 src={post.featuredImage.url}
+                className="h-full w-full object-cover"
               />
+              </div>
             </div>
             <div className="flex-grow ml-4">
               <p className="text-gray-500 font-xs">
