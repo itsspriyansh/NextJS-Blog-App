@@ -6,13 +6,14 @@ const CommentsForm = ({ slug }) => {
   const [error, setError] = useState(false)
   // const [localStorage, setLocalStorage] = useState(null)
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const [formData, setFormData] = useState({name : null, email : null, comment : null, storeData : null})
   const commentEl = useRef()
   const nameEl = useRef()
   const emailEl = useRef()
   const storeDataEl = useRef()
 
-  const handleCommentSubmission = () => {
 
+  const handleCommentSubmission = () => {
     setError(prev => false)
 
     const comment = commentEl.current.value
@@ -26,6 +27,7 @@ const CommentsForm = ({ slug }) => {
     }
 
     const commentObj = {name, email, comment, slug}
+    setFormData(prev => commentObj)
 
     if (storeData) {
       localStorage.setItem("name", name)
@@ -34,22 +36,21 @@ const CommentsForm = ({ slug }) => {
       localStorage.removeItem("name", name)
       localStorage.removeItem("email", email)
     }
+    
+    submitComment(formData)
+      .then(res => {
+        setShowSuccessMessage(prev => true)
+    
+        setTimeout(() => {
+          setShowSuccessMessage(prev => false)
+        }, 3000);
+      })
+      .catch(err => {
+        setError(err)
+        console.log(err)
+      })
   }
-
-  submitComment(commentObj).then(
-    res => {
-      setShowSuccessMessage(prev => true)
-
-      setTimeout(() => {
-        setShowSuccessMessage(prev => false)
-      }, 3000);
-    }
-  ).catch(
-    err => {
-      setError(err)
-      return
-    }
-  )
+  
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
@@ -105,4 +106,4 @@ const CommentsForm = ({ slug }) => {
   )
 }
 
-export default CommentsForm
+export default CommentsForm 

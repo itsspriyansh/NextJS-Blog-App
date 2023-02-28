@@ -1,11 +1,12 @@
 import { GraphQLClient, gql } from "graphql-request";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT
+const graphcmsToken = process.env.GRAPHCMS_TOKEN
 
-export default comments = async (req, res) => {
+export default async function comments (req, res) {
   const graphQlClient = new GraphQLClient(graphqlAPI, {
     headers : {
-      authorization : `Bearer ${process.env.GRAPHCMS_TOKEN}`
+      authorization : `Bearer ${graphcmsToken}`
     }
   })
 
@@ -15,6 +16,11 @@ export default comments = async (req, res) => {
     }
   `
 
-  const result = await graphQlClient.request(query, req.body)
-  return res.status(200).send(result)
+  try {
+    const result = await graphQlClient.request(query, req.body)
+    return res.status(200).send(result)
+  } catch (error) {
+    console.log(error)
+    return res.status(500).send(error)
+  }
 }
