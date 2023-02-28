@@ -128,3 +128,12 @@ export const getPosts = async () => {
     const response = await request(graphqlAPI, query)
     return response.postsConnection.edges
 }
+
+export const submitComment = async (obj) => {
+  const result = await fetch ("api/comments", {
+    method : "POST",
+    body : JSON.stringify(obj),
+  })
+  
+  return result.json()
+}
