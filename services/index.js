@@ -1,6 +1,7 @@
 import {request, gql} from "graphql-request"
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT
+const baseURl = process.env.APP_BASE_URL
 
 export const getRecentPosts = async () => {
   const query = gql `
@@ -129,8 +130,22 @@ export const getPosts = async () => {
     return response.postsConnection.edges
 }
 
+export const getComments = async (slug) => {
+  const query = gql `
+    query GetComments ($slug : String!) {
+      comments (where : { post : { slug : $slug } }){
+        name
+        createdAt
+        comment
+      }
+    }
+  `
+  const result = await request(graphqlAPI, query, { slug })
+  return result.comments
+}
+
 export const submitComment = async (obj) => {
-  const result = await fetch (`${process.env.APP_BASE_URL}/api/comments`, {
+  const result = await fetch (`${baseURl}/../../api/comments`, {
     method : "POST",
     headers : {
       "Content-Type" : "application/json",

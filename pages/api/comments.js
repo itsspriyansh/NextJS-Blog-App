@@ -18,6 +18,16 @@ export default async function comments (req, res) {
 
   try {
     const result = await graphQlClient.request(query, req.body)
+
+    await graphQlClient.request(
+      `mutation publishComment ($slug : String!) {
+          publishComment (where : {slug : $slug}, to : PUBLISHED) {
+            slug
+          }
+        }`,
+      { slug : req.body.slug }
+    )
+
     return res.status(200).send(result)
   } catch (error) {
     console.log(error)
