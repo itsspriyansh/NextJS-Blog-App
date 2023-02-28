@@ -1,3 +1,4 @@
+import { submitComment } from '@/services'
 import React, { useRef, useState } from 'react'
 
 const CommentsForm = ({ slug }) => {
@@ -24,7 +25,7 @@ const CommentsForm = ({ slug }) => {
       return
     }
 
-    const commentObj = {comment, name, email, slug}
+    const commentObj = {name, email, comment, slug}
 
     if (storeData) {
       localStorage.setItem("name", name)
@@ -34,6 +35,21 @@ const CommentsForm = ({ slug }) => {
       localStorage.removeItem("email", email)
     }
   }
+
+  submitComment(commentObj).then(
+    res => {
+      setShowSuccessMessage(prev => true)
+
+      setTimeout(() => {
+        setShowSuccessMessage(prev => false)
+      }, 3000);
+    }
+  ).catch(
+    err => {
+      setError(err)
+      return
+    }
+  )
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
