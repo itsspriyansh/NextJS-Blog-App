@@ -8,12 +8,16 @@
   --card_background : white;
   --text_color : black;
   --background_image : url("../public/bg.jpg");
+  --border_color : rgb(96 165 250);
+  --card_border_color : rgb(190, 190, 190);
 }
 
 [data-theme="dark"] {
-  --card_background : black;
+  --card_background : rgba(0, 0, 0, 0);
   --text_color : white;
   --background_image : url("https://wallpaperaccess.com/full/340452.png");
+  --border_color : gray;
+  --card_border_color : rgb(55, 55, 55);
 }
 
 html,
@@ -50,8 +54,18 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+.card-border {
+  border-color: var(--card_border_color);
+  transition: all 0.3s ease-in-out;
+}
+
 .text-box {
-  color : var(--text_color);
+  color : var(--text_color)
+}
+
+.head-border {
+  border-color: var(--border_color);
+  transition: all ease-out 0.3s;
 }
 
 .hover-underline-animation {
