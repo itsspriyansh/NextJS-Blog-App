@@ -4,6 +4,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
 
+:root {
+  --card_background : white;
+  --text_color : black;
+}
+
+[data-theme="dark"] {
+  --card_background : black;
+  --text_color : white;
+}
+
 html,
 body {
   padding: 0;
@@ -29,6 +39,12 @@ body {
 ::selection {
   color : white;
   background-color: rgb(219 39 119);
+}
+
+.post-card {
+  background-color: var(--card_background);
+  color : var(--text_color);
+  transition: all 0.3s ease-in-out;
 }
 
 .hover-underline-animation {
