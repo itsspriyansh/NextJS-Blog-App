@@ -16,16 +16,9 @@ const Header = () => {
   }
 
   const toggleThemeSwitch = () => {
-    const themeButton = document.getElementById("theme-button")
-    if (!darkMode) {
-      toggleDarkMode()
-      setDarkMode(prev => !prev)
-      themeButton.innerText = "Light Mode"
-    } else {
-      toggleLigthMode()
-      setDarkMode(prev => !prev)
-      themeButton.innerText = "Dark Mode"
-    }
+    setDarkMode(prev => !prev)
+    darkMode ? toggleLigthMode() : toggleDarkMode()
+    document.getElementById("theme-button").innerText = darkMode ? "Dark Mode" : "Light Mode"
   }
 
   useEffect(() => {

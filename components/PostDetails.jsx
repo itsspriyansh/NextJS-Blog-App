@@ -44,7 +44,7 @@ const PostDetails = ({ post }) => {
 
   return (
     <>
-      <div className="card shadow-lg rounded-lg lg:p-8 pb-12 mb-8 sm:p-0">
+      <div className="card shadow-lg rounded-lg lg:p-8 pb-12 mb-8 sm:p-0 relative">
         <div className="relative overflow-hidden shadow-md mb-6">
           <img src={post.featuredImage.url} alt="" className="object-top h-full w-full object-cover  shadow-lg rounded-t-lg lg:rounded-lg" />
         </div>
@@ -78,7 +78,6 @@ const PostDetails = ({ post }) => {
           }
         </div>
       </div>
-
     </>
   )
 }
